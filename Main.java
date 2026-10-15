@@ -11,7 +11,7 @@ public class Main {
         ComplexMatrix secondMatrix = new ComplexMatrix(rowCount, colCount);
         System.out.println("Заполняем первую матрицу");
 
-        for (int row = 0; row < rowCount; row++) {
+        for (int row =0; row < rowCount; row++) {
             for (int col = 0; col < colCount; col++) {
                 System.out.println("Элемент " + row + " " + col);
 
@@ -25,8 +25,8 @@ public class Main {
             }
         }
         System.out.println("Теперь вторая матрица");
-        for (int row = 0; row < rowCount; row++) {
-            for (int col = 0; col < colCount; col++) {
+        for (int row= 0; row < rowCount; row++) {
+            for (int col = 0;  col < colCount; col++) {
                 System.out.println("Элемент " + row + " " + col);
                 System.out.print("Часть без i: ");
                 double realPart = keyboard.nextDouble();
@@ -48,7 +48,7 @@ public class Main {
             System.out.println("1 - сложить");
             System.out.println("2 - умножить");
             System.out.println("3 - транспнировать");
-            System.out.println("4 - найти определитель");
+            System.out.println("4 - найти опередитель");
             System.out.println("5 - показать текущий результат");
             System.out.println("0 - выйти");
             int menuNumber = keyboard.nextInt();
