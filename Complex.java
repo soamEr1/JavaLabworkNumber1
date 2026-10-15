@@ -2,7 +2,6 @@ public class Complex {
 
     private double normalPart;
     private double iPart;
-    
     public Complex(double normalPart, double iPart) {
 
         this.normalPart = normalPart;
@@ -19,15 +18,12 @@ public class Complex {
 
     public Complex add(Complex secondNumber) {
         return new Complex(
-
                 normalPart + secondNumber.normalPart,
-
                 iPart + secondNumber.iPart
         );
     }
 
     public Complex subtract(Complex secondNumber) {
-
         return new Complex(
                 normalPart - secondNumber.normalPart,
                 iPart - secondNumber.iPart
