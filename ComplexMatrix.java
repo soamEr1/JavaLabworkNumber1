@@ -1,132 +1,182 @@
-
 public class ComplexMatrix {
-    private int rows;
-    private int cols;
-    private Complex[][] matrix;
+    private int howManyRows;
 
-    public ComplexMatrix(int rows, int cols) {
-        this.rows = rows;
-        this.cols = cols;
+    private int howManyCols;
 
-        matrix = new Complex[rows][cols];
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                matrix[i][j] = new Complex(0, 0);
+    private Complex[][] numbersBox;
+
+    public ComplexMatrix(int howManyRows, int howManyCols) {
+        this.howManyRows = howManyRows;
+        this.howManyCols = howManyCols;
+
+        numbersBox = new Complex[howManyRows][howManyCols];
+
+
+        for (int row = 0; row < howManyRows; row++) {
+            for (int col = 0; col < howManyCols; col++) {
+                numbersBox[row][col] = new Complex(0, 0);
+
             }
         }
     }
 
 
     public Complex getElement(int row, int col) {
-        return matrix[row][col];
+        return numbersBox[row][col];
     }
+
 
     public void setElement(int row, int col, Complex value) {
-        matrix[row][col] = value;
+        numbersBox[row][col] = value;
+
     }
 
 
-    public ComplexMatrix add(ComplexMatrix other) {
-        if (rows != other.rows || cols != other.cols) {
+    public ComplexMatrix add(ComplexMatrix anotherMatrix) {
+
+        if (howManyRows != anotherMatrix.howManyRows
+                || howManyCols != anotherMatrix.howManyCols) {
             throw new IllegalArgumentException("Размеры не совпадают");
         }
 
-        ComplexMatrix result = new ComplexMatrix(rows, cols);
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                result.matrix[i][j] = matrix[i][j].add(other.matrix[i][j]);
+        ComplexMatrix answerMatrix =
+                new ComplexMatrix(howManyRows, howManyCols);
+
+
+        for (int row = 0; row < howManyRows; row++) {
+            for (int col = 0; col < howManyCols; col++) {
+                answerMatrix.numbersBox[row][col] =
+
+                        numbersBox[row][col].add(
+                                anotherMatrix.numbersBox[row][col]);
+
             }
         }
 
-        return result;
+        return answerMatrix;
     }
 
 
-    public ComplexMatrix multiply(ComplexMatrix other) {
-        if (cols != other.rows) {
-            throw new IllegalArgumentException("нельзя   умножить матрицы");
+
+    public ComplexMatrix multiply(ComplexMatrix anotherMatrix) {
+
+        if (howManyCols != anotherMatrix.howManyRows) {
+            throw new IllegalArgumentException("Нельзя умножить матрицы");
+
         }
 
-        ComplexMatrix result = new ComplexMatrix(rows, other.cols);
+        ComplexMatrix answerMatrix =
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < other.cols; j++) {
-                Complex sum = new Complex(0, 0);
+                new ComplexMatrix(howManyRows, anotherMatrix.howManyCols);
 
-                for (int k = 0; k < cols; k++) {
-                    sum = sum.add(matrix[i][k].multiply(other.matrix[k][j]));
+        for (int row = 0; row < howManyRows; row++) {
+
+            for (int col = 0; col < anotherMatrix.howManyCols; col++) {
+
+
+                Complex tempSum = new Complex(0, 0);
+
+                for (int k = 0; k < howManyCols; k++) {
+                    tempSum = tempSum.add(
+                            numbersBox[row][k].multiply(
+                                    anotherMatrix.numbersBox[k][col]));
                 }
 
-                result.matrix[i][j] = sum;
+
+                answerMatrix.numbersBox[row][col] = tempSum;
             }
         }
 
-        return result;
+        return answerMatrix;
+
     }
+
 
 
     public ComplexMatrix transpose() {
-        ComplexMatrix result = new ComplexMatrix(cols, rows);
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                result.matrix[j][i] = matrix[i][j];
+        ComplexMatrix answerMatrix =
+                new ComplexMatrix(howManyCols, howManyRows);
+
+
+
+        for (int row = 0; row < howManyRows; row++) {
+
+            for (int col = 0; col < howManyCols; col++) {
+                answerMatrix.numbersBox[col][row] = numbersBox[row][col];
             }
         }
 
-        return result;
+        return answerMatrix;
     }
 
 
+
     public Complex determinant() {
-        if (rows != cols) {
-            throw new IllegalArgumentException("Матрица должна быть кв.");
+        if (howManyRows != howManyCols) {
+
+            throw new IllegalArgumentException(
+                    "Матрица должна быть квадратной");
         }
 
-        if (rows == 1) {
-            return matrix[0][0];
+
+        if (howManyRows == 1) {
+            return numbersBox[0][0];
         }
 
-        if (rows == 2) {
-            return matrix[0][0].multiply(matrix[1][1])
-                    .subtract(matrix[0][1].multiply(matrix[1][0]));
+
+
+        if (howManyRows == 2) {
+
+            return numbersBox[0][0].multiply(numbersBox[1][1])
+
+                    .subtract(numbersBox[0][1].multiply(numbersBox[1][0]));
         }
 
-        Complex det = new Complex(0, 0);
+        Complex detNumber = new Complex(0, 0);
 
-        for (int j = 0; j < cols; j++) {
-            ComplexMatrix minor = new ComplexMatrix(rows - 1, cols - 1);
+        for (int col = 0; col < howManyCols; col++) {
+            ComplexMatrix smallMatrix =
+                    new ComplexMatrix(howManyRows - 1, howManyCols - 1);
 
-            for (int r = 1; r < rows; r++) {
-                int c2 = 0;
 
-                for (int c = 0; c < cols; c++) {
-                    if (c != j) {
-                        minor.setElement(r - 1, c2, matrix[r][c]);
-                        c2++;
+
+            for (int row = 1; row < howManyRows; row++) {
+                int newCol = 0;
+
+                for (int oldCol = 0; oldCol < howManyCols; oldCol++) {
+
+                    if (oldCol != col) {
+                        smallMatrix.setElement(row - 1, newCol,
+                                numbersBox[row][oldCol]);
+                        newCol++;
                     }
                 }
             }
 
-            Complex term = matrix[0][j].multiply(minor.determinant());
+            Complex partOfDet =
+                    numbersBox[0][col].multiply(smallMatrix.determinant());
 
-            if (j % 2 == 0) {
-                det = det.add(term);
+
+            if (col % 2 == 0) {
+                detNumber = detNumber.add(partOfDet);
             } else {
-                det = det.subtract(term);
+                detNumber = detNumber.subtract(partOfDet);
+
             }
         }
 
-        return det;
+        return detNumber;
     }
 
 
     public void print() {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                System.out.print(matrix[i][j] + "\t");
+        for (int row = 0; row < howManyRows; row++) {
+
+            for (int col = 0; col < howManyCols; col++) {
+                System.out.print(numbersBox[row][col] + "\t");
             }
 
             System.out.println();
