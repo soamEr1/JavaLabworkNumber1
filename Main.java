@@ -11,11 +11,8 @@ public class Main {
         System.out.println("Введите столбцы:");
         int colCount = keyboard.nextInt();
 
-        ComplexMatrix firstMatrix =
-                new ComplexMatrix(rowCount, colCount);
-
-        ComplexMatrix secondMatrix =
-                new ComplexMatrix(rowCount, colCount);
+        ComplexMatrix firstMatrix = new ComplexMatrix(rowCount, colCount);
+        ComplexMatrix secondMatrix = new ComplexMatrix(rowCount, colCount);
 
 
         System.out.println("Заполняем первую матрицу");
@@ -30,8 +27,7 @@ public class Main {
                 System.out.print("Часть с i: ");
                 double imaginaryPart = keyboard.nextDouble();
 
-                firstMatrix.setElement(row, col,
-                        new Complex(realPart, imaginaryPart));
+                firstMatrix.setElement(row, col, new Complex(realPart, imaginaryPart));
             }
         }
 
@@ -48,8 +44,7 @@ public class Main {
                 System.out.print("Часть с i: ");
                 double imaginaryPart = keyboard.nextDouble();
 
-                secondMatrix.setElement(row, col,
-                        new Complex(realPart, imaginaryPart));
+                secondMatrix.setElement(row, col,new Complex(realPart, imaginaryPart));
             }
         }
 
