@@ -1,9 +1,6 @@
 public class ComplexMatrix {
     private int howManyRows;
-
     private int howManyCols;
-
-
     private Complex[][] numbersBox;
 
     public ComplexMatrix(int howManyRows, int howManyCols) {
@@ -31,7 +28,6 @@ public class ComplexMatrix {
         numbersBox[row][col] = value;
 
     }
-
 
     public ComplexMatrix add(ComplexMatrix anotherMatrix) {
 
@@ -62,16 +58,12 @@ public class ComplexMatrix {
 
         if (howManyCols != anotherMatrix.howManyRows) {
             throw new IllegalArgumentException("Нелзя умножить матрицы");
-
         }
 
         ComplexMatrix answerMatrix = new ComplexMatrix(howManyRows, anotherMatrix.howManyCols);
 
         for (int row = 0; row < howManyRows; row++) {
-
             for (int col = 0; col < anotherMatrix.howManyCols; col++) {
-
-
                 Complex tempSum = new Complex(0, 0);
 
                 for (int k = 0; k < howManyCols; k++) {
@@ -125,9 +117,7 @@ public class ComplexMatrix {
 
         if (howManyRows == 2) {
 
-            return numbersBox[0][0].multiply(numbersBox[1][1])
-
-                    .subtract(numbersBox[0][1].multiply(numbersBox[1][0]));
+            return numbersBox[0][0].multiply(numbersBox[1][1]).subtract(numbersBox[0][1].multiply(numbersBox[1][0]));
         }
 
         Complex detNumber = new Complex(0, 0);
