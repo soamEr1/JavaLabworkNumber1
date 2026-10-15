@@ -48,21 +48,17 @@ public class Complex {
 
     public Complex multiply(Complex secondNumber) {
 
-        double newReal = normalPart * secondNumber.normalPart
-                - iPart * secondNumber.iPart;
+        double newReal = normalPart * secondNumber.normalPart - iPart * secondNumber.iPart;
 
 
-        double newImaginary = normalPart * secondNumber.iPart
-
-                + iPart * secondNumber.normalPart;
+        double newImaginary = normalPart * secondNumber.iPart + iPart * secondNumber.normalPart;
 
         return new Complex(newReal, newImaginary);
     }
 
 
     public Complex divide(Complex secondNumber) {
-        double bottom = secondNumber.normalPart * secondNumber.normalPart
-                + secondNumber.iPart * secondNumber.iPart;
+        double bottom = secondNumber.normalPart * secondNumber.normalPart + secondNumber.iPart * secondNumber.iPart;
 
 
         if (bottom == 0) {
@@ -70,13 +66,10 @@ public class Complex {
         }
 
 
-        double newReal = (normalPart * secondNumber.normalPart
-                + iPart * secondNumber.iPart) / bottom;
+        double newReal = (normalPart * secondNumber.normalPart + iPart * secondNumber.iPart) / bottom;
 
 
-        double newImaginary = (iPart * secondNumber.normalPart
-
-                - normalPart * secondNumber.iPart) / bottom;
+        double newImaginary = (iPart * secondNumber.normalPart - normalPart * secondNumber.iPart) / bottom;
 
         return new Complex(newReal, newImaginary);
     }
