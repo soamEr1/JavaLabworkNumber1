@@ -35,14 +35,12 @@ public class ComplexMatrix {
 
     public ComplexMatrix add(ComplexMatrix anotherMatrix) {
 
-        if (howManyRows != anotherMatrix.howManyRows
-                || howManyCols != anotherMatrix.howManyCols) {
+        if (howManyRows != anotherMatrix.howManyRows || howManyCols != anotherMatrix.howManyCols) {
             throw new IllegalArgumentException("Размеры не совпадают");
         }
 
 
-        ComplexMatrix answerMatrix =
-                new ComplexMatrix(howManyRows, howManyCols);
+        ComplexMatrix answerMatrix = new ComplexMatrix(howManyRows, howManyCols);
 
 
         for (int row = 0; row < howManyRows; row++) {
@@ -63,13 +61,11 @@ public class ComplexMatrix {
     public ComplexMatrix multiply(ComplexMatrix anotherMatrix) {
 
         if (howManyCols != anotherMatrix.howManyRows) {
-            throw new IllegalArgumentException("Нельзя умножить матрицы");
+            throw new IllegalArgumentException("Нелзя умножить матрицы");
 
         }
 
-        ComplexMatrix answerMatrix =
-
-                new ComplexMatrix(howManyRows, anotherMatrix.howManyCols);
+        ComplexMatrix answerMatrix = new ComplexMatrix(howManyRows, anotherMatrix.howManyCols);
 
         for (int row = 0; row < howManyRows; row++) {
 
@@ -97,8 +93,7 @@ public class ComplexMatrix {
 
     public ComplexMatrix transpose() {
 
-        ComplexMatrix answerMatrix =
-                new ComplexMatrix(howManyCols, howManyRows);
+        ComplexMatrix answerMatrix = new ComplexMatrix(howManyCols, howManyRows);
 
 
 
@@ -138,9 +133,7 @@ public class ComplexMatrix {
         Complex detNumber = new Complex(0, 0);
 
         for (int col = 0; col < howManyCols; col++) {
-            ComplexMatrix smallMatrix =
-                    new ComplexMatrix(howManyRows - 1, howManyCols - 1);
-
+            ComplexMatrix smallMatrix = new ComplexMatrix(howManyRows - 1, howManyCols - 1);
 
 
             for (int row = 1; row < howManyRows; row++) {
@@ -156,8 +149,7 @@ public class ComplexMatrix {
                 }
             }
 
-            Complex partOfDet =
-                    numbersBox[0][col].multiply(smallMatrix.determinant());
+            Complex partOfDet = numbersBox[0][col].multiply(smallMatrix.determinant());
 
 
             if (col % 2 == 0) {
