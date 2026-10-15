@@ -67,7 +67,8 @@ public class Main {
             System.out.println("Что делаем?");
             System.out.println("1 - сложить");
             System.out.println("2 - умножить");
-            System.out.println("3 - транспонировать");
+
+            System.out.println("3 - транспнировать");
             System.out.println("4 - найти определитель");
             System.out.println("5 - показать текущий результат");
             System.out.println("0 - выйти");
@@ -92,7 +93,7 @@ public class Main {
                         lastResult = lastResult.multiply(firstMatrix);
                     }
 
-                    System.out.println("Результат умножения:");
+                    System.out.println("Резpультат умножения:");
                     lastResult.print();
 
                 } else if (menuNumber == 3) {
@@ -127,7 +128,7 @@ public class Main {
                 }
 
             } catch (IllegalArgumentException e) {
-                System.out.println("С такими размерами операция не работает");
+                System.out.println("С такими размерами операция не раотает");
             }
         }
 
